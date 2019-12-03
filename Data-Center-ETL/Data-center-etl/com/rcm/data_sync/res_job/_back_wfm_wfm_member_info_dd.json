@@ -1,0 +1,109 @@
+{
+  "type": "job",
+  "steps": [
+    {
+      "stepType": "mysql",
+      "parameter": {
+        "column": [
+          "id",
+          "member_id",
+          "user_name",
+          "nick_name",
+          "avatar_url",
+          "status",
+          "reg_info_status",
+          "gender",
+          "login_time",
+          "finger_print",
+          "mobile_tel",
+          "password",
+          "email",
+          "card_type",
+          "id_number",
+          "id_card_flag",
+          "id_card_time",
+          "integral",
+          "level",
+          "birthday",
+          "constellatory",
+          "occupation",
+          "nation",
+          "interest",
+          "income",
+          "identify_flag",
+          "identify_time",
+          "key_version",
+          "real_name",
+          "isp_name",
+          "weixin",
+          "company",
+          "edu_code",
+          "edu_name",
+          "province_code",
+          "province_name",
+          "city_code",
+          "city_name",
+          "district_code",
+          "district_name",
+          "add_time",
+          "update_uid",
+          "update_time",
+          "del_flag",
+          "batch_code",
+          "step_count",
+          "zhima_score",
+          "quality2000",
+          "register_channel",
+          "register_source_app",
+          "app_id"
+        ],
+        "connection": [
+          {
+            "datasource": "wfm",
+            "table": [
+              "wfm_member_info"
+            ]
+          }
+        ],
+        "where": "update_time <= '2019-09-02 16:59:59'",
+        "splitPk": "id",
+        "encoding": "UTF-8"
+      },
+      "name": "Reader",
+      "category": "reader"
+    },
+    {
+      "stepType": "odps",
+      "parameter": {
+        "partition": "ts=20190902,hour=16",
+        "truncate": true,
+        "datasource": "dc_ods",
+        "column": [
+          "*"
+        ],
+        "table": "wfm_wfm_member_info_dd"
+      },
+      "name": "Writer",
+      "category": "writer"
+    }
+  ],
+  "version": "2.0",
+  "order": {
+    "hops": [
+      {
+        "from": "Reader",
+        "to": "Writer"
+      }
+    ]
+  },
+  "setting": {
+    "errorLimit": {
+      "record": "0"
+    },
+    "speed": {
+      "throttle": false,
+      "concurrent": 3,
+      "dmu": 3
+    }
+  }
+}

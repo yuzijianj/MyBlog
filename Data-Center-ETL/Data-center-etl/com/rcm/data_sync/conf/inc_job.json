@@ -1,0 +1,57 @@
+{
+  "type": "job",
+  "steps": [
+    {
+      "stepType": "mysql",
+      "parameter": {
+        "column": ["id"],
+        "connection": [
+          {
+            "datasource": "fmc_msr",
+            "table": [
+              "msr_order"
+            ]
+          }
+        ],
+        "where": "(add_time >= '${date} 00:00:00') or (update_time >= '${date} 00:00:00')",
+        "splitPk": "id",
+        "encoding": "UTF-8"
+      },
+      "name": "Reader",
+      "category": "reader"
+    },
+    {
+      "stepType": "odps",
+      "parameter": {
+        "partition": "ts=${ts},hour=${hour}",
+        "truncate": true,
+        "datasource": "dc_ods",
+        "column": [
+          "*"
+        ],
+        "table": "fmc_msr_msr_order"
+      },
+      "name": "Writer",
+      "category": "writer"
+    }
+  ],
+  "version": "2.0",
+  "order": {
+    "hops": [
+      {
+        "from": "Reader",
+        "to": "Writer"
+      }
+    ]
+  },
+  "setting": {
+    "errorLimit": {
+      "record": "0"
+    },
+    "speed": {
+      "throttle": false,
+      "concurrent": 3,
+      "dmu": 3
+    }
+  }
+}

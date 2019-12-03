@@ -1,0 +1,78 @@
+CREATE TABLE `dc_ods.smm_order_t_user_addressinfo_dd` (
+  `id` bigint COMMENT '主键',
+  `memberId` bigint COMMENT '用户ID',
+  `receiver_name` String COMMENT '收货人姓名',
+  `defaultFlag` String COMMENT '是否是默认收货地址',
+  `mobile` String COMMENT '收货人手机号',
+  `province_code` bigint COMMENT '省级地址code',
+  `province_name` String COMMENT '省级名称',
+  `city_code` bigint COMMENT '城市地址code',
+  `city_name` String COMMENT '城市名称',
+  `district_code` bigint COMMENT '区县code',
+  `district_name` String COMMENT '区县名称',
+  `address` String COMMENT '具体地址',
+  `email` String COMMENT '电子邮箱',
+  `zip_code` bigint COMMENT '邮政编码',
+  `label` String COMMENT '地址标签',
+  `real_name` String COMMENT '身份证上的姓名，用于海淘场景',
+  `id_card_number` String COMMENT '身份证ID',
+  `id_card_valid_flag` bigint COMMENT '身份证是否有效',
+  `create_time` datetime COMMENT '地址生成时间',
+  `update_time` datetime COMMENT '地址更新时间',
+  `del_flag` bigint COMMENT '该地址是否已被标记删除'
+)COMMENT '用户地址管理表' 
+PARTITIONED BY (ts STRING,hour STRING);
+
+
+CREATE TABLE `dc_edw.smm_order_t_user_addressinfo_dd` (
+  `id` bigint COMMENT '主键',
+  `memberId` bigint COMMENT '用户ID',
+  `receiver_name` String COMMENT '收货人姓名',
+  `defaultFlag` String COMMENT '是否是默认收货地址',
+  `mobile` String COMMENT '收货人手机号',
+  `province_code` bigint COMMENT '省级地址code',
+  `province_name` String COMMENT '省级名称',
+  `city_code` bigint COMMENT '城市地址code',
+  `city_name` String COMMENT '城市名称',
+  `district_code` bigint COMMENT '区县code',
+  `district_name` String COMMENT '区县名称',
+  `address` String COMMENT '具体地址',
+  `email` String COMMENT '电子邮箱',
+  `zip_code` bigint COMMENT '邮政编码',
+  `label` String COMMENT '地址标签',
+  `real_name` String COMMENT '身份证上的姓名，用于海淘场景',
+  `id_card_number` String COMMENT '身份证ID',
+  `id_card_valid_flag` bigint COMMENT '身份证是否有效',
+  `create_time` datetime COMMENT '地址生成时间',
+  `update_time` datetime COMMENT '地址更新时间'
+)COMMENT '用户地址管理表' 
+PARTITIONED BY (ts STRING,hour STRING);
+
+
+CREATE TABLE `xhy_warehouse.smm_order_t_user_addressinfo_dd` (
+  `id` bigint COMMENT '主键',
+  `memberId` bigint COMMENT '用户ID',
+  `receiver_name` varchar COMMENT '收货人姓名',
+  `defaultFlag` varchar COMMENT '是否是默认收货地址',
+  `mobile` varchar COMMENT '收货人手机号',
+  `province_code` bigint COMMENT '省级地址code',
+  `province_name` varchar COMMENT '省级名称',
+  `city_code` bigint COMMENT '城市地址code',
+  `city_name` varchar COMMENT '城市名称',
+  `district_code` bigint COMMENT '区县code',
+  `district_name` varchar COMMENT '区县名称',
+  `address` varchar COMMENT '具体地址',
+  `email` varchar COMMENT '电子邮箱',
+  `zip_code` bigint COMMENT '邮政编码',
+  `label` varchar COMMENT '地址标签',
+  `real_name` varchar COMMENT '身份证上的姓名，用于海淘场景',
+  `id_card_number` varchar COMMENT '身份证ID',
+  `id_card_valid_flag` bigint COMMENT '身份证是否有效',
+  `create_time` timestamp COMMENT '地址生成时间',
+  `update_time` timestamp COMMENT '地址更新时间'
+)PARTITION BY HASH KEY (id) PARTITION NUM 128
+SUBPARTITION BY LIST KEY (ts)
+SUBPARTITION OPTIONS (available_partition_num = 90)
+TABLEGROUP edw
+OPTIONS (UPDATETYPE='batch')
+COMMENT '用户地址管理表';

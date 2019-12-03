@@ -1,0 +1,54 @@
+CREATE TABLE `dc_ods.wfm_wfm_member_rights_dd` (
+  `id` bigint COMMENT '主键',
+  `member_id` bigint COMMENT '会员id',
+  `member_phone` String COMMENT '会员手机号',
+  `member_level` bigint COMMENT '会员等级：0:普通会员，1：黄金会员',
+  `super_member_status` bigint COMMENT '高级会员状态：0：未付费，1：已付费，2：已到期，3：已冻结',
+  `active_time` datetime COMMENT '生效时间',
+  `expire_time` datetime COMMENT '有效时间',
+  `frozen_time` datetime COMMENT '冻结时间',
+  `create_time` datetime COMMENT '创建时间',
+  `update_uid` bigint COMMENT '更新人id',
+  `update_time` datetime COMMENT '更新时间',
+  `del_flag` bigint COMMENT '删除标记（0：未删除，1：已删除）',
+  `app_id` String COMMENT 'appId'
+)COMMENT '会员权益表' 
+PARTITIONED BY (ts STRING,hour STRING);
+
+
+CREATE TABLE `dc_edw.wfm_wfm_member_rights_dd` (
+  `id` bigint COMMENT '主键',
+  `member_id` bigint COMMENT '会员id',
+  `member_phone` String COMMENT '会员手机号',
+  `member_level` bigint COMMENT '会员等级：0:普通会员，1：黄金会员',
+  `super_member_status` bigint COMMENT '高级会员状态：0：未付费，1：已付费，2：已到期，3：已冻结',
+  `active_time` datetime COMMENT '生效时间',
+  `expire_time` datetime COMMENT '有效时间',
+  `frozen_time` datetime COMMENT '冻结时间',
+  `create_time` datetime COMMENT '创建时间',
+  `update_uid` bigint COMMENT '更新人id',
+  `update_time` datetime COMMENT '更新时间',
+  `app_id` String COMMENT 'appId'
+)COMMENT '会员权益表' 
+PARTITIONED BY (ts STRING,hour STRING);
+
+
+CREATE TABLE `xhy_warehouse.wfm_wfm_member_rights_dd` (
+  `id` bigint COMMENT '主键',
+  `member_id` bigint COMMENT '会员id',
+  `member_phone` varchar COMMENT '会员手机号',
+  `member_level` bigint COMMENT '会员等级：0:普通会员，1：黄金会员',
+  `super_member_status` bigint COMMENT '高级会员状态：0：未付费，1：已付费，2：已到期，3：已冻结',
+  `active_time` datetime COMMENT '生效时间',
+  `expire_time` datetime COMMENT '有效时间',
+  `frozen_time` datetime COMMENT '冻结时间',
+  `create_time` datetime COMMENT '创建时间',
+  `update_uid` bigint COMMENT '更新人id',
+  `update_time` datetime COMMENT '更新时间',
+  `app_id` varchar COMMENT 'appId'
+)PARTITION BY HASH KEY (id) PARTITION NUM 128
+SUBPARTITION BY LIST KEY (ts)
+SUBPARTITION OPTIONS (available_partition_num = 90)
+TABLEGROUP edw
+OPTIONS (UPDATETYPE='batch')
+COMMENT '会员权益表';

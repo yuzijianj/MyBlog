@@ -1,0 +1,99 @@
+CREATE TABLE `dc_ods.wfm_wfm_login_log_dd` (
+  `id` bigint ,
+  `member_id` bigint COMMENT '会员id',
+  `user_name` String COMMENT '用户名',
+  `ip_addr` String COMMENT 'ip地址',
+  `p_value` String COMMENT 'p值',
+  `finger_print` String COMMENT '指纹（风控）',
+  `operate_type` bigint COMMENT '1-注册 2-登录',
+  `device_no` String COMMENT '设备号',
+  `system_no` String COMMENT 'android / ios',
+  `device_type` String COMMENT 'APP/H5',
+  `version` String COMMENT '版本',
+  `add_time` datetime COMMENT '添加时间',
+  `update_time` datetime COMMENT '更新时间',
+  `del_flag` bigint COMMENT '删除标记（0：未删除，1：已删除）',
+  `device_token` String COMMENT '友盟设备号',
+  `device_name` String COMMENT '设备名称',
+  `term_sys_version` String COMMENT '系统版本号',
+  `term_model` String COMMENT '设备型号',
+  `term_id` String COMMENT '设备唯一标识',
+  `network` String COMMENT '网络',
+  `network_operator` String COMMENT '网络运营商',
+  `major_app_version` String COMMENT '主APP版本号',
+  `app_version` String COMMENT 'app版本号',
+  `app_type` bigint COMMENT 'app类型（0、未知，1、FDS急用钱，2、TNP小黑鱼，3、JTA融360，4、LAS彩票，5、LICAI珊瑚理财，6、H5-M站，7、……com.tiefan.wfm.intf.enums.MemberIdBizzEnum）',
+  `register_channel` String COMMENT '注册渠道',
+  `position_lon` String COMMENT '经度',
+  `position_lat` String COMMENT '纬度',
+  `app_id` String COMMENT 'appId'
+)COMMENT '登录记录日志' 
+PARTITIONED BY (ts STRING,hour STRING);
+
+
+CREATE TABLE `dc_edw.wfm_wfm_login_log_dd` (
+  `id` bigint ,
+  `member_id` bigint COMMENT '会员id',
+  `user_name` String COMMENT '用户名',
+  `ip_addr` String COMMENT 'ip地址',
+  `p_value` String COMMENT 'p值',
+  `finger_print` String COMMENT '指纹（风控）',
+  `operate_type` bigint COMMENT '1-注册 2-登录',
+  `device_no` String COMMENT '设备号',
+  `system_no` String COMMENT 'android / ios',
+  `device_type` String COMMENT 'APP/H5',
+  `version` String COMMENT '版本',
+  `add_time` datetime COMMENT '添加时间',
+  `update_time` datetime COMMENT '更新时间',
+  `device_token` String COMMENT '友盟设备号',
+  `device_name` String COMMENT '设备名称',
+  `term_sys_version` String COMMENT '系统版本号',
+  `term_model` String COMMENT '设备型号',
+  `term_id` String COMMENT '设备唯一标识',
+  `network` String COMMENT '网络',
+  `network_operator` String COMMENT '网络运营商',
+  `major_app_version` String COMMENT '主APP版本号',
+  `app_version` String COMMENT 'app版本号',
+  `app_type` bigint COMMENT 'app类型（0、未知，1、FDS急用钱，2、TNP小黑鱼，3、JTA融360，4、LAS彩票，5、LICAI珊瑚理财，6、H5-M站，7、……com.tiefan.wfm.intf.enums.MemberIdBizzEnum）',
+  `register_channel` String COMMENT '注册渠道',
+  `position_lon` String COMMENT '经度',
+  `position_lat` String COMMENT '纬度',
+  `app_id` String COMMENT 'appId'
+)COMMENT '登录记录日志' 
+PARTITIONED BY (ts STRING,hour STRING);
+
+
+CREATE TABLE `xhy_warehouse.wfm_wfm_login_log_dd` (
+  `id` bigint ,
+  `member_id` bigint COMMENT '会员id',
+  `user_name` varchar COMMENT '用户名',
+  `ip_addr` varchar COMMENT 'ip地址',
+  `p_value` varchar COMMENT 'p值',
+  `finger_print` varchar COMMENT '指纹（风控）',
+  `operate_type` bigint COMMENT '1-注册 2-登录',
+  `device_no` varchar COMMENT '设备号',
+  `system_no` varchar COMMENT 'android / ios',
+  `device_type` varchar COMMENT 'APP/H5',
+  `version` varchar COMMENT '版本',
+  `add_time` datetime COMMENT '添加时间',
+  `update_time` datetime COMMENT '更新时间',
+  `device_token` varchar COMMENT '友盟设备号',
+  `device_name` varchar COMMENT '设备名称',
+  `term_sys_version` varchar COMMENT '系统版本号',
+  `term_model` varchar COMMENT '设备型号',
+  `term_id` varchar COMMENT '设备唯一标识',
+  `network` varchar COMMENT '网络',
+  `network_operator` varchar COMMENT '网络运营商',
+  `major_app_version` varchar COMMENT '主APP版本号',
+  `app_version` varchar COMMENT 'app版本号',
+  `app_type` bigint COMMENT 'app类型（0、未知，1、FDS急用钱，2、TNP小黑鱼，3、JTA融360，4、LAS彩票，5、LICAI珊瑚理财，6、H5-M站，7、……com.tiefan.wfm.intf.enums.MemberIdBizzEnum）',
+  `register_channel` varchar COMMENT '注册渠道',
+  `position_lon` varchar COMMENT '经度',
+  `position_lat` varchar COMMENT '纬度',
+  `app_id` varchar COMMENT 'appId'
+)PARTITION BY HASH KEY (id) PARTITION NUM 128
+SUBPARTITION BY LIST KEY (ts)
+SUBPARTITION OPTIONS (available_partition_num = 90)
+TABLEGROUP edw
+OPTIONS (UPDATETYPE='batch')
+COMMENT '登录记录日志';

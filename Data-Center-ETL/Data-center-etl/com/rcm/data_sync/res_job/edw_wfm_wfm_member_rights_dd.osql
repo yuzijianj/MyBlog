@@ -1,0 +1,58 @@
+--odps sql
+--********************************************************************--
+--author:janYu
+--create time:2019-09-02 17:45:40
+--********************************************************************--
+
+INSERT OVERWRITE TABLE dc_edw.wfm_wfm_member_rights_dd partition(ts='${td}')
+  SELECT  id
+      ,member_id
+      ,member_phone
+      ,member_level
+      ,super_member_status
+      ,active_time
+      ,expire_time
+      ,frozen_time
+      ,create_time
+      ,update_uid
+      ,update_time
+      ,app_id
+  FROM    (
+    SELECT  t.*
+    ,ROW_NUMBER() OVER(PARTITION BY id ORDER BY update_time DESC) AS num
+    FROM    (
+      SELECT  id
+      ,member_id
+      ,member_phone
+      ,member_level
+      ,super_member_status
+      ,active_time
+      ,expire_time
+      ,frozen_time
+      ,create_time
+      ,update_uid
+      ,update_time
+      ,app_id
+      ,0 AS del_flag
+      FROM    dc_edw.wfm_wfm_member_rights_dd
+      where ts ='${td_bef}'
+      UNION ALL
+      SELECT  id
+      ,member_id
+      ,member_phone
+      ,member_level
+      ,super_member_status
+      ,active_time
+      ,expire_time
+      ,frozen_time
+      ,create_time
+      ,update_uid
+      ,update_time
+      ,app_id
+      ,del_flag
+      FROM    dc_ods.wfm_wfm_member_rights_dd AS t
+      WHERE   t.ts = '${td}'
+    ) AS t
+  ) AS t
+  WHERE   t.num = 1
+  AND     t.del_flag = 0;

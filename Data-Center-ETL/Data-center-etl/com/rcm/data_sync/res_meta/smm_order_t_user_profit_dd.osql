@@ -1,0 +1,72 @@
+CREATE TABLE `dc_ods.smm_order_t_user_profit_dd` (
+  `profit_id` bigint COMMENT '主键',
+  `member_id` bigint COMMENT '用户id',
+  `from_id` bigint COMMENT '收益来源id',
+  `order_id` String COMMENT '收益来源订单',
+  `order_member_id` bigint COMMENT '收益来源订单下单用户',
+  `status` bigint COMMENT '0,待到账1,已到账,2已失效',
+  `order_amount` String COMMENT '订单金额',
+  `profit_amount` String COMMENT '佣金',
+  `settle_flag` bigint COMMENT '是否结算0 未结算，1 已结算',
+  `settle_time` datetime COMMENT '结算时间',
+  `type` bigint COMMENT '收益类型',
+  `create_time` datetime COMMENT '创建时间',
+  `update_time` datetime COMMENT '更新时间',
+  `del_flag` bigint COMMENT '删除标记',
+  `user_rank` bigint COMMENT '会员等级',
+  `base_amount` String COMMENT '计算基数',
+  `rate_factor` String COMMENT '比例因子',
+  `rule_id` bigint COMMENT '达成的规则id',
+  `biz_type` bigint COMMENT '业务类型中的该属性与收益表中bizType保持一致）'
+)COMMENT '用户收益表' 
+PARTITIONED BY (ts STRING,hour STRING);
+
+
+CREATE TABLE `dc_edw.smm_order_t_user_profit_dd` (
+  `profit_id` bigint COMMENT '主键',
+  `member_id` bigint COMMENT '用户id',
+  `from_id` bigint COMMENT '收益来源id',
+  `order_id` String COMMENT '收益来源订单',
+  `order_member_id` bigint COMMENT '收益来源订单下单用户',
+  `status` bigint COMMENT '0,待到账1,已到账,2已失效',
+  `order_amount` bigint COMMENT '订单金额',
+  `profit_amount` bigint COMMENT '佣金',
+  `settle_flag` bigint COMMENT '是否结算0 未结算，1 已结算',
+  `settle_time` datetime COMMENT '结算时间',
+  `type` bigint COMMENT '收益类型',
+  `create_time` datetime COMMENT '创建时间',
+  `update_time` datetime COMMENT '更新时间',
+  `user_rank` bigint COMMENT '会员等级',
+  `base_amount` bigint COMMENT '计算基数',
+  `rate_factor` bigint COMMENT '比例因子',
+  `rule_id` bigint COMMENT '达成的规则id',
+  `biz_type` bigint COMMENT '业务类型中的该属性与收益表中bizType保持一致）'
+)COMMENT '用户收益表' 
+PARTITIONED BY (ts STRING,hour STRING);
+
+
+CREATE TABLE `xhy_warehouse.smm_order_t_user_profit_dd` (
+  `profit_id` bigint COMMENT '主键',
+  `member_id` bigint COMMENT '用户id',
+  `from_id` bigint COMMENT '收益来源id',
+  `order_id` varchar COMMENT '收益来源订单',
+  `order_member_id` bigint COMMENT '收益来源订单下单用户',
+  `status` bigint COMMENT '0,待到账1,已到账,2已失效',
+  `order_amount` bigint COMMENT '订单金额',
+  `profit_amount` bigint COMMENT '佣金',
+  `settle_flag` bigint COMMENT '是否结算0 未结算，1 已结算',
+  `settle_time` timestamp COMMENT '结算时间',
+  `type` bigint COMMENT '收益类型',
+  `create_time` timestamp COMMENT '创建时间',
+  `update_time` timestamp COMMENT '更新时间',
+  `user_rank` bigint COMMENT '会员等级',
+  `base_amount` bigint COMMENT '计算基数',
+  `rate_factor` bigint COMMENT '比例因子',
+  `rule_id` bigint COMMENT '达成的规则id',
+  `biz_type` bigint COMMENT '业务类型中的该属性与收益表中bizType保持一致）'
+)PARTITION BY HASH KEY (id) PARTITION NUM 128
+SUBPARTITION BY LIST KEY (ts)
+SUBPARTITION OPTIONS (available_partition_num = 90)
+TABLEGROUP edw
+OPTIONS (UPDATETYPE='batch')
+COMMENT '用户收益表';

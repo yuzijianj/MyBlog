@@ -1,0 +1,54 @@
+CREATE TABLE `dc_ods.smm_greatmart_t_user_relation_dd` (
+  `id` bigint COMMENT '主键',
+  `member_id` bigint COMMENT '会员号',
+  `user_rank` bigint COMMENT '当前用户等级',
+  `parent_id` bigint COMMENT '父ID',
+  `first_consultant` bigint COMMENT '第一个顾问',
+  `first_consultant_parent` bigint COMMENT '第一个顾问的父id',
+  `cultivation_consultant` bigint COMMENT '育成顾问',
+  `senior_consultant` bigint COMMENT '高级顾问',
+  `senior_consultant_parent` bigint COMMENT '高级顾问的父id',
+  `senior_cultivation_consultant` bigint COMMENT '高级育成顾问',
+  `del_flag` bigint COMMENT '删除标识：0-默认，1-已删除',
+  `add_time` datetime COMMENT '添加时间',
+  `update_time` datetime COMMENT '更新时间'
+)COMMENT '用户关系表' 
+PARTITIONED BY (ts STRING,hour STRING);
+
+
+CREATE TABLE `dc_edw.smm_greatmart_t_user_relation_dd` (
+  `id` bigint COMMENT '主键',
+  `member_id` bigint COMMENT '会员号',
+  `user_rank` bigint COMMENT '当前用户等级',
+  `parent_id` bigint COMMENT '父ID',
+  `first_consultant` bigint COMMENT '第一个顾问',
+  `first_consultant_parent` bigint COMMENT '第一个顾问的父id',
+  `cultivation_consultant` bigint COMMENT '育成顾问',
+  `senior_consultant` bigint COMMENT '高级顾问',
+  `senior_consultant_parent` bigint COMMENT '高级顾问的父id',
+  `senior_cultivation_consultant` bigint COMMENT '高级育成顾问',
+  `add_time` datetime COMMENT '添加时间',
+  `update_time` datetime COMMENT '更新时间'
+)COMMENT '用户关系表' 
+PARTITIONED BY (ts STRING,hour STRING);
+
+
+CREATE TABLE `xhy_warehouse.smm_greatmart_t_user_relation_dd` (
+  `id` bigint COMMENT '主键',
+  `member_id` bigint COMMENT '会员号',
+  `user_rank` bigint COMMENT '当前用户等级',
+  `parent_id` bigint COMMENT '父ID',
+  `first_consultant` bigint COMMENT '第一个顾问',
+  `first_consultant_parent` bigint COMMENT '第一个顾问的父id',
+  `cultivation_consultant` bigint COMMENT '育成顾问',
+  `senior_consultant` bigint COMMENT '高级顾问',
+  `senior_consultant_parent` bigint COMMENT '高级顾问的父id',
+  `senior_cultivation_consultant` bigint COMMENT '高级育成顾问',
+  `add_time` timestamp COMMENT '添加时间',
+  `update_time` timestamp COMMENT '更新时间'
+)PARTITION BY HASH KEY (id) PARTITION NUM 128
+SUBPARTITION BY LIST KEY (ts)
+SUBPARTITION OPTIONS (available_partition_num = 90)
+TABLEGROUP edw
+OPTIONS (UPDATETYPE='batch')
+COMMENT '用户关系表';
