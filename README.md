@@ -7,19 +7,6 @@
 [![license](https://img.shields.io/badge/license-GPL%20v3-yellow.svg)](https://gitee.com/yadong.zhang/DBlog/blob/master/LICENSE)
 
 ----
-
-# 重要声明
-ttps://gitee.com/yad
-1. 本项目配有相关[帮助文档](https://gitee.com/yadong.zhang/DBlog/wikis) 【[新版文档](http://dblog-docs.zhyd.me)】。文档中包括**基本的项目说明**、**shiro标签使用**、**七牛云配置**和一些常见的**异常问题解决方案**。使用时碰到问题请**优先**查阅【[帮助文档](https://gitee.com/yadong.zhang/DBlog/wikis)】。因为现在好多朋友问的问题大部分都写在【[帮助文档](hong.zhang/DBlog/wikis)】中了，希望各位朋友能自己翻阅下相关资料，高效提问，避免重复问题！
-2. **提问题**前请优先阅读【[如何向开源社区提问题](https://github.com/seajs/seajs/issues/545)】&【[提问的智慧](http://www.dianbo.org/9238/stone/tiwendezhihui.htm)】
-3. **提问题**时请优先选择[Gitee Issues](https://gitee.com/yadong.zhang/DBlog/issues)（方便问题追踪和一对一解决），其次[我的博客-留言板](https://www.zhyd.me/guestbook)，再次QQ群（QQ群消息较多，提问请注意节奏、时机），最次加我QQ好友直接提问（不推荐）
-4. 本项目唯一官网：[https://www.zhyd.me](https://www.zhyd.me)  
-5. 本项目开源地址：[Gitee](https://gitee.com/yadong.zhang/DBlog)    注： **Github上的项目已不准备更新** ，因此版本较老，请Github用户移步至[Gitee](https://gitee.com/yadong.zhang/DBlog) 
-6. 本项目修改记录，详情请移步[这里](https://gitee.com/yadong.zhang/DBlog/blob/master/update.md)
-7. 如果你想贡献代码，请先阅读[这篇文章](https://gitee.com/yadong.zhang/DBlog/blob/master/contribution.md)
-
-----
-
 # 写在前面的话
 ps: 虽然我知道，大部分人都是来了**直接下载源代码**后就潇洒的离开，并且只有等到下次**突然想到**“我天~~我得去看看OneBlog这烂项目更新新功能了吗”的时候才会重新来到这儿，即使你重新来过，我估计你也只有两个选择：    
 
@@ -137,37 +124,7 @@ ps: 虽然我知道，大部分人都是来了**直接下载源代码**后就潇
 - [MTR小站](https://www.itmtr.cn/)
 - [老揭博客](http://www.laojieblog.com/)
 - 更多待续...
-
-烦请各位使用OneBlog的朋友，能留下你的网址（没别的意思，只是看看有多少人而已） - [点这儿](https://gitee.com/yadong.zhang/DBlog/issues/ILIAQ)
-
 ----
-
-# 交流
-
-|  微信(备注:加群)  |  公众号  |
-| :------------: | :------------: |
-| <img src="https://gitee.com/yadong.zhang/static/raw/master/wx/wx.png" width="170"/> | <img src="https://gitee.com/yadong.zhang/static/raw/master/wx/wechat_account.jpg" width="200" /> |
-
- **QQ群** 
-
-1. 1群[![](https://images.gitee.com/uploads/images/2019/0129/191256_a40bceba_784199.png)](https://shang.qq.com/wpa/qunwpa?idkey=3571c554a143eff1e15807de033a240196c6b493b25b903d1d37571cfb6040aa)（ **已升为1000人群** ）
-2. 2群[![](https://images.gitee.com/uploads/images/2019/0129/191256_a40bceba_784199.png)](https://shang.qq.com/wpa/qunwpa?idkey=38594b12fb0ec66459f0dba0316648a5c4bb71ea613289e5b57b8f44ad83ebc9)（ **人很少** ）
-
-# 赞助
-
-> 为了让OneBlog更好用，作者码代码码的头发都没了！请作者买块生姜擦擦头皮，据说这样有助于生发~~
-
-| 支付宝  | 微信  | 支付宝红包  |
-| :------------: | :------------: | :------------: |
-| <img src="https://gitee.com/yadong.zhang/static/raw/master/qrcode/zfb_code.png" width="200"/> | <img src="https://gitee.com/yadong.zhang/static/raw/master/qrcode/wx_code.png" width="200" /> | <img src="https://gitee.com/yadong.zhang/static/raw/master/qrcode/zfb-code.png" width="200" /> |
-
-
-# 生命不息，折腾不止！ 更多信息，请关注：
- 1. [我的博客](https://www.zhyd.me)
- 2. [我的微博](http://weibo.com/211230415)
- 3. [我的头条号](http://www.toutiao.com/c/user/3286958681/)
- 4. [我的imooc](http://www.imooc.com/u/1175248/articles)
- 
 # 特别感谢
 
 - 广大的开源爱好者
@@ -179,5 +136,4 @@ ps: 虽然我知道，大部分人都是来了**直接下载源代码**后就潇
 - 待续...
 
 # 开源协议
-
 [![license](https://img.shields.io/badge/license-GPL%20v3-yellow.svg)](https://gitee.com/yadong.zhang/DBlog/blob/master/LICENSE)
